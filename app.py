@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 import pandas as pd
 import joblib
@@ -40,7 +38,7 @@ def prediction_page():
 
 
 def eda_page():
-    eda_path = "pages/eda.py"
+    eda_path = "eda.py"
     spec = importlib.util.spec_from_file_location("eda", eda_path)
     if spec and spec.loader:
         eda = importlib.util.module_from_spec(spec)
@@ -50,10 +48,21 @@ def eda_page():
             "Could not load the EDA page. Please check the file path and try again.")
 
 
+def about_page():
+    about_path = "devnev.py"
+    spec = importlib.util.spec_from_file_location("devnev", about_path)
+    if spec and spec.loader:
+        about = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(about)
+    else:
+        st.error(
+            "Could not load the About page. Please check the file path and try again.")
+
 # --- Multipage Dictionary ---
 PAGES = {
     "Prediction": prediction_page,
     "EDA": eda_page,
+    "About DevNev": about_page
 }
 
 st.sidebar.title("Navigation")

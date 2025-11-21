@@ -17,20 +17,49 @@ def prediction_page():
     st.header("Input Features")
 
     # --- User inputs (NO direct Density input) ---
-    age = st.number_input("Age (years)", min_value=1, max_value=120, value=25)
-    weight = st.number_input("Weight (kg)", min_value=1.0, max_value=300.0, value=70.0)
-    height = st.number_input("Height (cm)", min_value=50.0, max_value=250.0, value=170.0)
-
-    neck = st.number_input("Neck Circumference (cm)", min_value=10.0, max_value=60.0, value=40.0)
-    chest = st.number_input("Chest Circumference (cm)", min_value=50.0, max_value=200.0, value=100.0)
-    abdomen = st.number_input("Abdomen Circumference (cm)", min_value=50.0, max_value=200.0, value=90.0)
-    hip = st.number_input("Hip Circumference (cm)", min_value=50.0, max_value=200.0, value=100.0)
-    thigh = st.number_input("Thigh Circumference (cm)", min_value=30.0, max_value=100.0, value=60.0)
-    knee = st.number_input("Knee Circumference (cm)", min_value=20.0, max_value=70.0, value=40.0)
-    ankle = st.number_input("Ankle Circumference (cm)", min_value=10.0, max_value=50.0, value=25.0)
-    biceps = st.number_input("Biceps Circumference (cm)", min_value=20.0, max_value=70.0, value=35.0)
-    forearm = st.number_input("Forearm Circumference (cm)", min_value=15.0, max_value=50.0, value=30.0)
-    wrist = st.number_input("Wrist Circumference (cm)", min_value=10.0, max_value=30.0, value=15.0)
+    # Two columns layout for cleaner UI
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        age = st.number_input("Age (years)", min_value=1, max_value=120, value=25)
+    with col2:
+        weight = st.number_input("Weight (kg)", min_value=1.0, max_value=300.0, value=70.0)
+    
+    col3, col4 = st.columns(2)
+    with col3:
+        height = st.number_input("Height (cm)", min_value=50.0, max_value=250.0, value=170.0)
+    with col4:
+        neck = st.number_input("Neck Circumference (cm)", min_value=10.0, max_value=60.0, value=40.0)
+    
+    col5, col6 = st.columns(2)
+    with col5:
+        chest = st.number_input("Chest Circumference (cm)", min_value=50.0, max_value=200.0, value=100.0)
+    with col6:
+        abdomen = st.number_input("Abdomen Circumference (cm)", min_value=50.0, max_value=200.0, value=90.0)
+    
+    col7, col8 = st.columns(2)
+    with col7:
+        hip = st.number_input("Hip Circumference (cm)", min_value=50.0, max_value=200.0, value=100.0)
+    with col8:
+        thigh = st.number_input("Thigh Circumference (cm)", min_value=30.0, max_value=100.0, value=60.0)
+    
+    col9, col10 = st.columns(2)
+    with col9:
+        knee = st.number_input("Knee Circumference (cm)", min_value=20.0, max_value=70.0, value=40.0)
+    with col10:
+        ankle = st.number_input("Ankle Circumference (cm)", min_value=10.0, max_value=50.0, value=25.0)
+    
+    col11, col12 = st.columns(2)
+    with col11:
+        biceps = st.number_input("Biceps Circumference (cm)", min_value=20.0, max_value=70.0, value=35.0)
+    with col12:
+        forearm = st.number_input("Forearm Circumference (cm)", min_value=15.0, max_value=50.0, value=30.0)
+    
+    col13, col14 = st.columns(2)
+    with col13:
+        wrist = st.number_input("Wrist Circumference (cm)", min_value=10.0, max_value=30.0, value=15.0)
+    with col14:
+        st.write("")  # Empty column for alignment
 
     # --- Compute Density from Weight and Height ---
     # Replace this formula with your real density formula if needed

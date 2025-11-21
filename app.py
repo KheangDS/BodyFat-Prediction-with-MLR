@@ -23,13 +23,13 @@ def prediction_page():
     with col1:
         age = st.number_input("Age (years)", min_value=1, max_value=120, value=25)
     with col2:
-        weight = st.number_input("Weight (kg)", min_value=1.0, max_value=300.0, value=70.0)
+        weight = st.number_input("Weight (lbs)", min_value=1.0, max_value=300.0, value=70.0)
     
     col3, col4 = st.columns(2)
     with col3:
-        height = st.number_input("Height (cm)", min_value=50.0, max_value=250.0, value=170.0)
+        height = st.number_input("Height (inches)", min_value=20.0, max_value=100.0, value=67.0)
     with col4:
-        neck = st.number_input("Neck Circumference (cm)", min_value=10.0, max_value=60.0, value=40.0)
+        neck = st.number_input("Neck Circumference (inches)", min_value=4.0, max_value=24.0, value=16.0)
     
     col5, col6 = st.columns(2)
     with col5:

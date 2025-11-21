@@ -29,7 +29,7 @@ def prediction_page():
     with col3:
         height = st.number_input("Height (inches)", min_value=20.0, max_value=100.0, value=67.0)
     with col4:
-        neck = st.number_input("Neck Circumference (inches)", min_value=4.0, max_value=24.0, value=16.0)
+        neck = st.number_input("Neck Circumference (cm)", min_value=4.0, max_value=100.0, value=16.0)
     
     col5, col6 = st.columns(2)
     with col5:

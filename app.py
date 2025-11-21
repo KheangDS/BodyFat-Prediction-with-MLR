@@ -11,7 +11,7 @@ def prediction_page():
     st.write("This app predicts body fat percentage based on user inputs.")
 
     # Load the trained model
-    model_path = "models/bodyfat_model.pkl"
+    model_path = "models/bodyfat_model_02.pkl"
     model = joblib.load(model_path)
 
     st.header("Input Features")
@@ -63,14 +63,14 @@ def prediction_page():
 
     # --- Compute Density from Weight and Height ---
     # Replace this formula with your real density formula if needed
-    weight_g = weight * 1000
-    density = weight_g / height ** 3  # example: BMI-style formula
+    # weight_g = weight * 1000
+    # density = weight_g / height ** 3  # example: BMI-style formula
 
-    st.markdown(f"**Computed Density (from weight & height):** `{density:.4f}`")
+    # st.markdown(f"**Computed Density (from weight & height):** `{density:.4f}`")
 
     # --- Build input DataFrame for the model ---
     features = {
-        "Density": density,   # use computed density
+        # "Density": density,   # use computed density
         "Age": age,
         "Weight": weight,
         "Height": height,

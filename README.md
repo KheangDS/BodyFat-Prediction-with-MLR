@@ -1,54 +1,121 @@
 # Body Fat Prediction with Multiple Linear Regression (MLR)
 
-A Streamlit web app that predicts **body fat percentage** from body measurements using a **Multiple Linear Regression** model trained on the classic Body Fat dataset.
+A **Streamlit** web application that predicts **body fat percentage** from anthropometric body measurements using a **Multiple Linear Regression (MLR)** model trained on the classic Body Fat dataset. The app provides an interactive prediction tool alongside exploratory data analysis (EDA) visualizations, making it easy to understand the relationship between body measurements and body fat.
 
-## Demo (Streamlit)
-Run locally and open the Streamlit UI in your browser.
+## Overview
 
-## Project structure
-- `app.py` — Streamlit multipage app (Prediction / EDA / About)
-- `eda.py` — EDA page (interactive charts)
-- `devnev.py` — About page (team section)
-- `notebook/` — model training & testing notebooks
-- `images/` — images used by the About page
-- `requirements.txt` — Python dependencies
+Body fat percentage is a key indicator of physical fitness and health. This project applies **supervised machine learning** — specifically Multiple Linear Regression — to estimate body fat percentage from 13 easily measurable body characteristics, eliminating the need for costly or invasive measurement techniques such as underwater weighing.
 
-> Note: `app.py` expects a trained model at `models/bodyfat_model_02.pkl` and `eda.py` expects a dataset at `data/bodyfat.csv`.
+The application is organized into three pages:
+| Page | Description |
+|---|---|
+| **Prediction** | Enter body measurements and get an instant body fat % prediction |
+| **EDA** | Explore the dataset with interactive charts, statistics, and correlations |
+| **About DevNev** | Learn about the team behind the project |
 
 ## Features
-- Predict body fat % from anthropometric inputs (age, weight, height, and circumferences)
-- Interactive EDA: preview, summary statistics, histograms, correlation heatmap, and scatter plots
-- Simple multi-page navigation in Streamlit
+
+- 🔮 **Predict body fat %** from 13 anthropometric inputs: Age, Weight, Height, and 10 body circumferences (Neck, Chest, Abdomen, Hip, Thigh, Knee, Ankle, Biceps, Forearm, Wrist)
+- 📊 **Interactive EDA**: dataset preview, summary statistics, histograms, correlation heatmap, scatter matrix (pairplot), and customizable scatter plots
+- 🧭 **Multi-page Streamlit navigation** with a clean sidebar
+- ⚡ Powered by a pre-trained `scikit-learn` Linear Regression pipeline with `StandardScaler`
 
 ## Dataset
-Source: Kaggle — Body Fat Prediction Dataset.
+
+- **Source**: [Kaggle — Body Fat Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/body-fat-prediction-dataset)
+- **Size**: 252 observations, 15 columns
+- **Target variable**: `BodyFat` — body fat percentage estimated by underwater weighing
+- **Features**:
+
+| Column | Description | Unit |
+|---|---|---|
+| `Density` | Body density (used in original Siri equation) | g/cm³ |
+| `Age` | Age of the subject | years |
+| `Weight` | Body weight | lbs |
+| `Height` | Body height | inches |
+| `Neck` | Neck circumference | cm |
+| `Chest` | Chest circumference | cm |
+| `Abdomen` | Abdomen circumference | cm |
+| `Hip` | Hip circumference | cm |
+| `Thigh` | Thigh circumference | cm |
+| `Knee` | Knee circumference | cm |
+| `Ankle` | Ankle circumference | cm |
+| `Biceps` | Biceps (extended) circumference | cm |
+| `Forearm` | Forearm circumference | cm |
+| `Wrist` | Wrist circumference | cm |
+
+## Model
+
+The trained model (`models/bodyfat_model_02.pkl`) is a **scikit-learn pipeline** consisting of:
+1. **StandardScaler** — standardizes all input features to zero mean and unit variance
+2. **LinearRegression** — fits a multiple linear regression to the scaled features
+
+Training and evaluation are documented in `notebook/training_model.ipynb`. A separate testing notebook is available at `notebook/testing.ipynb`.
+
+## Project Structure
+
+```
+BodyFat-Prediction-with-MLR/
+├── app.py                  # Main Streamlit app (multi-page: Prediction / EDA / About)
+├── eda.py                  # EDA page — interactive charts and statistics
+├── devnev.py               # About page — team section
+├── notebook/
+│   ├── training_model.ipynb  # Model training & evaluation
+│   └── testing.ipynb         # Model testing
+├── models/
+│   └── bodyfat_model_02.pkl  # Pre-trained MLR pipeline (not tracked in git)
+├── data/
+│   └── bodyfat.csv           # Dataset (not tracked in git)
+├── images/                 # Team photos used by the About page
+├── requirements.txt        # Python dependencies
+└── README.md
+```
 
 ## Installation
+
 ```bash
 # (optional) create & activate a virtual environment
 python -m venv .venv
-# Windows: .venv\Scripts\activate
+# Windows:   .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
 
 pip install -r requirements.txt
 ```
 
-## Run the app
+## Run the App
+
 ```bash
 streamlit run app.py
 ```
 
+Then open the URL displayed in your terminal (usually `http://localhost:8501`) in your browser.
+
 ## Usage
-1. Open the **Prediction** page.
-2. Enter the measurements.
-3. Click **Predict Body Fat Percentage**.
+
+1. Open the **Prediction** page from the sidebar.
+2. Enter the subject's body measurements in the input fields.
+3. Click **Predict Body Fat Percentage** to see the result.
+4. Switch to the **EDA** page to explore the dataset visually.
 
 ## Notes / Troubleshooting
-- If you see an error about missing files, add:
-  - `models/bodyfat_model_02.pkl`
-  - `data/bodyfat.csv`
-- Ensure your model was trained with the same feature names used in `app.py`:
-  `Age, Weight, Height, Neck, Chest, Abdomen, Hip, Thigh, Knee, Ankle, Biceps, Forearm, Wrist`.
+
+- If you see errors about missing files, ensure the following are present:
+  - `models/bodyfat_model_02.pkl` — trained model (generated by running `notebook/training_model.ipynb`)
+  - `data/bodyfat.csv` — dataset (download from the Kaggle link above)
+- The model must be trained using the same feature names as in `app.py`:
+  `Age, Weight, Height, Neck, Chest, Abdomen, Hip, Thigh, Knee, Ankle, Biceps, Forearm, Wrist`
+
+## Tech Stack
+
+| Tool | Purpose |
+|---|---|
+| [Python 3](https://www.python.org/) | Core language |
+| [Streamlit](https://streamlit.io/) | Web app framework |
+| [scikit-learn](https://scikit-learn.org/) | ML model (Linear Regression + StandardScaler) |
+| [pandas](https://pandas.pydata.org/) | Data manipulation |
+| [Plotly](https://plotly.com/python/) | Interactive visualizations |
+| [joblib](https://joblib.readthedocs.io/) | Model serialization |
 
 ## License
-Add a license for your preferred usage (e.g., MIT).
+
+This project is open source. Add a license of your choice (e.g., [MIT](https://choosealicense.com/licenses/mit/)).

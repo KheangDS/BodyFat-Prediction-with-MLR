@@ -8,9 +8,7 @@ Run locally and open the Streamlit UI in your browser.
 ## Project structure
 - `app.py` — Streamlit multipage app (Prediction / EDA / About)
 - `eda.py` — EDA page (interactive charts)
-- `devnev.py` — About page (team section)
 - `notebook/` — model training & testing notebooks
-- `images/` — images used by the About page
 - `requirements.txt` — Python dependencies
 
 > Note: `app.py` expects a trained model at `models/bodyfat_model_02.pkl` and `eda.py` expects a dataset at `data/bodyfat.csv`.
@@ -49,6 +47,3 @@ streamlit run app.py
   - `data/bodyfat.csv`
 - Ensure your model was trained with the same feature names used in `app.py`:
   `Age, Weight, Height, Neck, Chest, Abdomen, Hip, Thigh, Knee, Ankle, Biceps, Forearm, Wrist`.
-
-## License
-Add a license for your preferred usage (e.g., MIT).
